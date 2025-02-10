@@ -1,27 +1,43 @@
 import tkinter as tk
 from timer import Timer
 
+# Colors
 PINK = "#e2979c"
 RED = "#e7305b"
 GREEN = "#9bdeac"
 YELLOW = "#f7f5dd"
 
+# Window settings
 W_TITLE = "Pomodoro"
 W_PADX = 100
 W_PADY = 50
 
+# Canvas settings
 C_WIDTH = 200
 C_HEIGHT = 224
 
+# Timer text settings
 T_POSX = C_WIDTH / 2
 T_POSY = C_HEIGHT / 2 + 18
 T_TEXT = "00:00"
 T_COLOR = "white"
 T_FONT = ("Courier", 35, "bold")
 
+# Bgr image path
 BGR_IMAGE = "tomato.png"
+
+# Timer label settings
 L_FONT = ("Courier", 35, "bold")
+L_START_TEXT = "Pomodoro"
+L_WORK_TEXT = "Work"
+L_BREAK_TEXT = "Break"
+
+# Buttons settings
 B_FONT = ("Arial", 14, "normal")
+B_START_TEXT = "Start"
+B_RESET_TEXT = "Reset"
+
+# Check mark settings
 CHECK_MARK = "✔"
 CHECK_MARK_FONT = ("Courier", 18, "normal")
 
@@ -38,9 +54,9 @@ class MainWindow:
 
         self.timer = Timer()
 
-        self.timer_label = tk.Label(text="Timer", bg=YELLOW, fg=GREEN, font=L_FONT)
-        self.start_button = tk.Button(text="Start", font=B_FONT, command=self.start_timer)
-        self.reset_button = tk.Button(text="Reset", font=B_FONT)
+        self.timer_label = tk.Label(text=L_START_TEXT, bg=YELLOW, fg=GREEN, font=L_FONT)
+        self.start_button = tk.Button(text=B_START_TEXT, font=B_FONT, command=self.start_timer)
+        self.reset_button = tk.Button(text=B_RESET_TEXT, font=B_FONT)
         self.checkmark_label = tk.Label(text=CHECK_MARK, bg=YELLOW, fg=GREEN, font=CHECK_MARK_FONT)
 
         self.canvas.grid(row=1, column=1)
@@ -61,3 +77,9 @@ class MainWindow:
 
     def change_timer_text(self, text):
         self.canvas.itemconfig(self.timer_text, text=text)
+
+    def go_to_work(self):
+        self.timer_label.config(text=L_WORK_TEXT)
+
+    def go_to_break(self):
+        self.timer_label.config(text=L_BREAK_TEXT)

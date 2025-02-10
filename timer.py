@@ -1,5 +1,3 @@
-import time
-
 # Prod values
 # WORK_MIN = 25
 # SHORT_BREAK_MIN = 5
@@ -31,10 +29,13 @@ class Timer:
     def start_timer(self, main_window):
         self.reps += 1
         if self.reps % NUMBER_OF_CYCLES == 0:
+            main_window.go_to_break()
             self.countdown(main_window, LONG_BREAK_MIN * SECONDS_MULTIPLIER)
         elif self.reps % 2 == 0:
+            main_window.go_to_break()
             self.countdown(main_window, SHORT_BREAK_MIN * SECONDS_MULTIPLIER)
         else:
+            main_window.go_to_work()
             self.countdown(main_window, WORK_MIN * SECONDS_MULTIPLIER)
 
     def countdown(self, main_window, cur_time_sec):
