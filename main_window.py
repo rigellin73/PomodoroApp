@@ -19,7 +19,7 @@ C_HEIGHT = 224
 # Timer text settings
 T_POSX = C_WIDTH / 2
 T_POSY = C_HEIGHT / 2 + 18
-T_TEXT = "00:00"
+T_DEFAULT_TEXT = "00:00"
 T_COLOR = "white"
 T_FONT = ("Courier", 35, "bold")
 
@@ -28,7 +28,7 @@ BGR_IMAGE = "tomato.png"
 
 # Timer label settings
 L_FONT = ("Courier", 35, "bold")
-L_START_TEXT = "Timer"
+L_DEFAULT_TEXT = "Timer"
 L_WORK_TEXT = "Work"
 L_BREAK_TEXT = "Break"
 
@@ -50,11 +50,11 @@ class MainWindow:
 
         self.canvas = tk.Canvas(width=C_WIDTH, height=C_HEIGHT, bg=YELLOW, highlightthickness=0)
         self.setup_main_canvas()
-        self.timer_text = self.canvas.create_text(T_POSX, T_POSY, text=T_TEXT, fill=T_COLOR, font=T_FONT)
+        self.timer_text = self.canvas.create_text(T_POSX, T_POSY, text=T_DEFAULT_TEXT, fill=T_COLOR, font=T_FONT)
 
         self.timer = Timer(self)
 
-        self.timer_label = tk.Label(text=L_START_TEXT, bg=YELLOW, fg=GREEN, font=L_FONT)
+        self.timer_label = tk.Label(text=L_DEFAULT_TEXT, bg=YELLOW, fg=GREEN, font=L_FONT)
         self.start_button = tk.Button(text=B_START_TEXT, font=B_FONT, command=self.start_timer)
         self.reset_button = tk.Button(text=B_RESET_TEXT, font=B_FONT, command=self.reset_timer)
         self.checkmark_text = tk.StringVar()
@@ -95,8 +95,8 @@ class MainWindow:
 
     def reset_timer(self):
         self.timer.stop_timer()
-        self.timer_label.config(text=L_START_TEXT, fg=GREEN)
-        self.change_timer_text(T_TEXT)
+        self.timer_label.config(text=L_DEFAULT_TEXT, fg=GREEN)
+        self.change_timer_text(T_DEFAULT_TEXT)
         self.checkmark_text.set("")
 
     def delay_action(self, delay_ms, action, *args):
