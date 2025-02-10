@@ -29,7 +29,7 @@ class Timer:
     def start_timer(self, main_window):
         self.reps += 1
         if self.reps % NUMBER_OF_CYCLES == 0:
-            main_window.go_to_break()
+            main_window.go_to_long_break()
             self.countdown(main_window, LONG_BREAK_MIN * SECONDS_MULTIPLIER)
         elif self.reps % 2 == 0:
             main_window.go_to_break()

@@ -57,7 +57,7 @@ class MainWindow:
         self.timer_label = tk.Label(text=L_START_TEXT, bg=YELLOW, fg=GREEN, font=L_FONT)
         self.start_button = tk.Button(text=B_START_TEXT, font=B_FONT, command=self.start_timer)
         self.reset_button = tk.Button(text=B_RESET_TEXT, font=B_FONT)
-        self.checkmark_label = tk.Label(text=CHECK_MARK, bg=YELLOW, fg=GREEN, font=CHECK_MARK_FONT)
+        self.checkmark_label = tk.Label(bg=YELLOW, fg=GREEN, font=CHECK_MARK_FONT)
 
         self.canvas.grid(row=1, column=1)
         self.timer_label.grid(row=0, column=1)
@@ -79,7 +79,10 @@ class MainWindow:
         self.canvas.itemconfig(self.timer_text, text=text)
 
     def go_to_work(self):
-        self.timer_label.config(text=L_WORK_TEXT)
+        self.timer_label.config(text=L_WORK_TEXT, fg=GREEN)
 
     def go_to_break(self):
-        self.timer_label.config(text=L_BREAK_TEXT)
+        self.timer_label.config(text=L_BREAK_TEXT, fg=PINK)
+
+    def go_to_long_break(self):
+        self.timer_label.config(text=L_BREAK_TEXT, fg=RED)
