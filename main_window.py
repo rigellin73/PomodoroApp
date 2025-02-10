@@ -28,7 +28,7 @@ BGR_IMAGE = "tomato.png"
 
 # Timer label settings
 L_FONT = ("Courier", 35, "bold")
-L_START_TEXT = "Pomodoro"
+L_START_TEXT = "Timer"
 L_WORK_TEXT = "Work"
 L_BREAK_TEXT = "Break"
 
@@ -52,7 +52,7 @@ class MainWindow:
         self.setup_main_canvas()
         self.timer_text = self.canvas.create_text(T_POSX, T_POSY, text=T_TEXT, fill=T_COLOR, font=T_FONT)
 
-        self.timer = Timer()
+        self.timer = Timer(self)
 
         self.timer_label = tk.Label(text=L_START_TEXT, bg=YELLOW, fg=GREEN, font=L_FONT)
         self.start_button = tk.Button(text=B_START_TEXT, font=B_FONT, command=self.start_timer)
@@ -74,7 +74,7 @@ class MainWindow:
         self.canvas.create_image(C_WIDTH / 2, C_HEIGHT / 2, image=self.bgr_image)
 
     def start_timer(self):
-        self.timer.start_timer(self)
+        self.timer.start_timer()
 
     def change_timer_text(self, text):
         self.canvas.itemconfig(self.timer_text, text=text)
@@ -92,3 +92,15 @@ class MainWindow:
         cur_text = self.checkmark_text.get()
         cur_text += CHECK_MARK
         self.checkmark_text.set(cur_text)
+
+    def reset_timer(self):
+        self.timer.stop_timer()
+        self.timer_label.config(text=L_START_TEXT, fg=GREEN)
+        self.change_timer_text(T_TEXT)
+        self.checkmark_text.set("")
+
+    def delay_action(self, delay_ms, action, *args):
+        return self.window.after(delay_ms, action, *args)
+
+    def cancel_action(self, action):
+        self.window.after_cancel(action)
