@@ -23,5 +23,7 @@ def setup_main_window():
 def setup_main_canvas(bgr_image):
     main_canvas = tk.Canvas(width=C_WIDTH, height=C_HEIGHT, bg=YELLOW, highlightthickness=0)
     main_canvas.create_image(C_WIDTH / 2, C_HEIGHT / 2, image=bgr_image)
-    main_canvas.create_text(T_POSX, T_POSY, text=T_TEXT, fill=T_COLOR, font=T_FONT)
     return main_canvas
+
+def setup_timer_text(canvas):
+    return canvas.create_text(T_POSX, T_POSY, text=T_TEXT, fill=T_COLOR, font=T_FONT)
