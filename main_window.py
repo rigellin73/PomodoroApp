@@ -56,8 +56,9 @@ class MainWindow:
 
         self.timer_label = tk.Label(text=L_START_TEXT, bg=YELLOW, fg=GREEN, font=L_FONT)
         self.start_button = tk.Button(text=B_START_TEXT, font=B_FONT, command=self.start_timer)
-        self.reset_button = tk.Button(text=B_RESET_TEXT, font=B_FONT)
-        self.checkmark_label = tk.Label(bg=YELLOW, fg=GREEN, font=CHECK_MARK_FONT)
+        self.reset_button = tk.Button(text=B_RESET_TEXT, font=B_FONT, command=self.reset_timer)
+        self.checkmark_text = tk.StringVar()
+        self.checkmark_label = tk.Label(bg=YELLOW, fg=GREEN, font=CHECK_MARK_FONT, textvariable=self.checkmark_text)
 
         self.canvas.grid(row=1, column=1)
         self.timer_label.grid(row=0, column=1)
@@ -86,3 +87,8 @@ class MainWindow:
 
     def go_to_long_break(self):
         self.timer_label.config(text=L_BREAK_TEXT, fg=RED)
+
+    def add_checkmark(self):
+        cur_text = self.checkmark_text.get()
+        cur_text += CHECK_MARK
+        self.checkmark_text.set(cur_text)

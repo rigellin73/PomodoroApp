@@ -43,4 +43,6 @@ class Timer:
         if cur_time_sec > 0:
             main_window.window.after(1000, self.countdown, main_window, cur_time_sec - 1)
         else:
+            if self.reps % 2 != 0:
+                main_window.add_checkmark()
             main_window.window.after(1000, self.start_timer, main_window)
