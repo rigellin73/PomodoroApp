@@ -37,6 +37,7 @@ class MainWindow:
         self.canvas.create_image(cfg.C_WIDTH / 2, cfg.C_HEIGHT / 2, image=self.bgr_image)
 
     def start_timer(self):
+        self.start_button.config(state="disabled")
         self.timer.start_timer()
 
     def change_timer_text(self, text):
@@ -61,6 +62,7 @@ class MainWindow:
         self.timer_label.config(text=cfg.L_DEFAULT_TEXT, fg=cfg.GREEN)
         self.change_timer_text(cfg.T_DEFAULT_TEXT)
         self.checkmark_text.set("")
+        self.start_button.config(state="normal")
 
     def delay_action(self, delay_ms, action, *args):
         return self.window.after(delay_ms, action, *args)
