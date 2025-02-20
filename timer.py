@@ -1,16 +1,4 @@
-# Prod values
-# WORK_MIN = 25
-# SHORT_BREAK_MIN = 5
-# LONG_BREAK_MIN = 20
-# SECONDS_MULTIPLIER = 60
-# NUMBER_OF_CYCLES = 8
-
-# Test values
-WORK_MIN = 5
-SHORT_BREAK_MIN = 3
-LONG_BREAK_MIN = 10
-SECONDS_MULTIPLIER = 1
-NUMBER_OF_CYCLES = 4
+import config as cfg
 
 class Timer:
     def __init__(self, main_window):
@@ -31,15 +19,15 @@ class Timer:
 
     def start_timer(self):
         self.reps += 1
-        if self.reps % NUMBER_OF_CYCLES == 0:
+        if self.reps % cfg.NUMBER_OF_CYCLES == 0:
             self.window.go_to_long_break()
-            self.countdown(LONG_BREAK_MIN * SECONDS_MULTIPLIER)
+            self.countdown(cfg.LONG_BREAK_MIN * cfg.SECONDS_MULTIPLIER)
         elif self.reps % 2 == 0:
             self.window.go_to_break()
-            self.countdown(SHORT_BREAK_MIN * SECONDS_MULTIPLIER)
+            self.countdown(cfg.SHORT_BREAK_MIN * cfg.SECONDS_MULTIPLIER)
         else:
             self.window.go_to_work()
-            self.countdown(WORK_MIN * SECONDS_MULTIPLIER)
+            self.countdown(cfg.WORK_MIN * cfg.SECONDS_MULTIPLIER)
 
     def countdown(self, cur_time_sec):
         self.window.change_timer_text(self.format_time(cur_time_sec))
