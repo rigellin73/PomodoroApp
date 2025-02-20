@@ -51,3 +51,4 @@ B_RESET_TEXT = "Reset"
 # Check mark settings
 CHECK_MARK = "✔"
 CHECK_MARK_FONT = ("Courier", 18, "normal")
+MAX_CHECKMARKS_NUM = 10
